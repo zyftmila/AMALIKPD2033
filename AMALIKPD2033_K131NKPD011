@@ -1,0 +1,65 @@
+package com.mycompany.amalikpd2033 
+import java.util.Scanner;
+
+public class AMALIKPD2033{
+
+    //fungsi untuk mendapatkan nama pemandu
+    public static String dapatkanNama(Scanner input){
+        System.out.print("Masukkan nama pemandu:");
+        return input.nextLine();
+    }
+
+    //fungsi untuk mendapatkan jarak perjalanan dengan semakan julat
+    public static int dapatkanJarakPerjalanan(Scanner input){
+    int jarak;
+    while (true){
+        try{
+            System.out.print("Masukkan jumlah jarak perjalanan (km):");
+           jarak = Integer.parseInt(input.nextLine());
+           if(jarak>=0 && jarak <=10000){
+               break; //keluar jika input sah
+           }else{
+               System.out.println("Jarak tidak boleh melebihi 10000 km atau kurang dari 0 km.");
+           }
+        }catch (NumberFormatException e){
+            System.out.println("Sila masukkan nombor yang sah");
+        }
+    }
+    return jarak;
+    }
+
+//fungsi untuk mengira elaun perjalanan
+public static double kiraElaun(int jarak,double kadarSeKM){
+return jarak*kadarSeKM;
+}
+
+//Fungsi untuk memaparkan rumusan elaun
+public static void paparRumusan(String nama,int jarak,double jumlahElaun){
+System.out.println("\nMasukkan nama pemandu:");
+System.out.println(nama);
+System.out.println("Masukkan jumlah jarak perjalanan(km):");
+System.out.println(jarak);
+System.out.println("\nRumusan Elaun perjalanan bagi" +nama);
+System.out.println("Jumlah jarak perjalanan:"+jarak+"km");
+System.out.printf("JUMLAH ELAUN ADALAH:RM%.2f\n",jumlahElaun);
+}
+
+//fungsi utama
+public static void main(String[]args){
+final double KADAR_SE_KM=1.50;//Elaun per km
+Scanner input = new Scanner(System.in);
+
+//input nama dan jarak perjalanan
+String nama=dapatkanNama(input);
+int jarak=dapatkanJarakPerjalanan(input);
+
+//Kira elaun
+double jumlahElaun = kiraElaun(jarak,KADAR_SE_KM);
+
+//Paparkan rumusan elaun
+paparRumusan(nama,jarak,jumlahElaun);
+
+input.close();
+
+  }
+}
